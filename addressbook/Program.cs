@@ -4,9 +4,9 @@ internal class program
 {
     public static List<contacts> person = new List<contacts>();
 
-    public static void main(string[] args)
+    public static void Main(string[] args)
     {
-        addressbook.person.creatcontact();
+        addressbook.person.createcontacts();
         addressbook.person.displaycontacts();
         addressbook.person.editcontacts();
     }

@@ -57,6 +57,57 @@ namespace addressbook
                 Console.WriteLine("contact No: " + contact.phoneNo);
                 Console.WriteLine("email address: " + contact.email);
             }
+     
+        }
+        public static void editcontacts()
+        {
+            Console.WriteLine("Enter Name of person to edit details: ");
+            string name = Console.ReadLine();
+
+            foreach (var contact in program.person)
+            {
+                if (contact.firstname.Equals(name))
+                {
+                    Console.WriteLine("which field you want to edit:\n1.full name\n2.last name\n3.address\n4.city\n5.state\n6.zip\n7.phoneNo\n8.email\n");
+                    Console.WriteLine("Enter your choice:");
+                    int choice = Convert.ToInt32(Console.ReadLine());
+                    switch (choice)
+                    {
+                        case 1:
+                            Console.WriteLine("Enter first name to update:");
+                            contact.firstname = Convert.ToString(Console.ReadLine());
+                            break;
+                        case 2:
+                            Console.WriteLine("Enter last name to update:");
+                            contact.lastname = Convert.ToString(Console.ReadLine());
+                            break;
+                        case 3:
+                            Console.WriteLine("Enter address to update:");
+                            contact.address = Convert.ToString(Console.ReadLine());
+                            break;
+                        case 4:
+                            Console.WriteLine("Enter city to update:");
+                            contact.city = Convert.ToString(Console.ReadLine());
+                            break;
+                        case 5:
+                            Console.WriteLine("Enter state to update:");
+                            contact.state = Convert.ToString(Console.ReadLine());
+                            break;
+                        case 6:
+                            Console.WriteLine("Enter phone No to update:");
+                            contact.phoneNo = Convert.ToDouble(Console.ReadLine());
+                            break;
+                        case 7:
+                            Console.WriteLine("Enter email to update:");
+                            contact.email = Convert.ToString(Console.ReadLine());
+                            break;
+                        case 8:
+                            Console.WriteLine("Enter first name to update:");
+                            contact.firstname = Convert.ToString(Console.ReadLine());
+                            break;
+                    }
+                }
+            }
         }
     }
 }
