@@ -109,6 +109,60 @@ namespace addressbook
                 }
             }
         }
+        public static void deletecontacts()
+        {
+             Console.WriteLine("Enter the Name of person to delete details: ");
+             string inp_name = Console.ReadLine();
+
+             foreach (var contact in program.person)
+             {
+                 if (contact.firstname.Equals(inp_name))
+                 {
+                     Console.WriteLine("which field you want to edit:\n1.full name\n2.last name\n3.address\n4.city\n5.state\n6.zip\n7.phoneNo\n8.email\n");
+                     Console.WriteLine("Enter your choice:");
+                     int choice = Convert.ToInt32(Console.ReadLine());
+                    switch (choice)
+                    {
+                        case 1:
+                            Console.WriteLine("Enter first name to delete:");
+                            contact.firstname = Convert.ToString(Console.ReadLine());
+                            break;
+                        case 2:
+                            Console.WriteLine("Enter last name to delete:");
+                            contact.lastname = Convert.ToString(Console.ReadLine());
+                            break;
+                        case 3:
+                            Console.WriteLine("Enter address to delete:");
+                            contact.address = Convert.ToString(Console.ReadLine());
+                            break;
+                        case 4:
+                            Console.WriteLine("Enter city to delete:");
+                            contact.city = Convert.ToString(Console.ReadLine());
+                            break;
+                        case 5:
+                            Console.WriteLine("Enter state to delete:");
+                            contact.state = Convert.ToString(Console.ReadLine());
+                            break;
+                        case 6:
+                            Console.WriteLine("Enter phone No to delete:");
+                            contact.phoneNo = Convert.ToDouble(Console.ReadLine());
+                            break;
+                        case 7:
+                            Console.WriteLine("Enter email to delete:");
+                            contact.email = Convert.ToString(Console.ReadLine());
+                            break;
+                        case 8:
+                            Console.WriteLine("Enter first name to delete:");
+                            contact.firstname = Convert.ToString(Console.ReadLine());
+                            break;
+                    }
+                 }
+
+             }
+        }
     }
 }
+
+
+
 

@@ -9,5 +9,6 @@ internal class program
         addressbook.person.createcontacts();
         addressbook.person.displaycontacts();
         addressbook.person.editcontacts();
+        addressbook.person.deletecontacts();
     }
 }
