@@ -170,7 +170,22 @@ namespace addressbook
                 n--;
             }
         }
-        
+        public static void multiaddressbook()
+        {
+            Dictionary<string, List<contacts>> group = new Dictionary<string, List<contacts>>();
+            Console.WriteLine("Howmany number of address books you want to add? ");
+            int numberofbooks = Convert.ToInt32(Console.ReadLine());
+            while (numberofbooks > 0)
+            {
+                Console.WriteLine("Enter name of the owner of this address book: ");
+                string gname = Console.ReadLine();
+                person person = new person();
+                person.addmulticontacts();
+                group.Add(gname, program.person);
+                numberofbooks--;
+            }
+
+        }
     }
 }
 
