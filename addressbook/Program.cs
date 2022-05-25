@@ -10,5 +10,8 @@ internal class program
         addressbook.person.displaycontacts();
         addressbook.person.editcontacts();
         addressbook.person.deletecontacts();
+        addressbook.person.addmulticontacts();
+        
+        
     }
 }
