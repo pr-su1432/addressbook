@@ -184,7 +184,6 @@ namespace addressbook
                 group.Add(gname, program.person);
                 numberofbooks--;
             }
-
         }
     }
 }
