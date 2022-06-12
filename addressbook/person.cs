@@ -3,79 +3,109 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace addressbook
 {
-    internal class Person
+    public class Person
     {
-        public static List<contacts> person = new List<contacts>();
-        public Dictionary<string, List<contacts>> group = new Dictionary<string, List<contacts>>();
-        
+        List<contacts> person = new List<contacts>();
+        Dictionary<string, List<contacts>> group = new Dictionary<string, List<contacts>>();
+        Dictionary<string, List<string>> byCity = new Dictionary<string, List<string>>();
+        Dictionary<string, List<string>> ByState = new Dictionary<string, List<string>>();
 
-        public static void createcontacts()
+
+
+
+
+        contacts contact;
+
+        public void createcontacts()
         {
-
-            contacts contact = new contacts();
-            Console.WriteLine("Enter First Name: ");
-            contact.firstname = Console.ReadLine();
-            contacts contacts = person.FirstOrDefault(p => p.Equals(contact));
-            if (contacts == null)
+            contact = new contacts();
+            bool ststus = true;
+            while (ststus)
             {
-                Console.WriteLine("Enter Last Name: ");
-                contact.lastname = Console.ReadLine();
 
-                Console.WriteLine("Enter Phone Number: ");
-                contact.phoneNo = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Enter First Name: ");
+                contact.firstname = Console.ReadLine();
+                if (person.Any(p => p.firstname.Equals(contact.firstname)))
+                {
 
-                Console.WriteLine("Enter Address: ");
-                contact.address = Console.ReadLine();
+                    Console.WriteLine("Name already exit in adress book:");
+                }
+                else
+                {
+                    ststus = false;
+                }
 
-                Console.WriteLine("Enter City: ");
-                contact.city = Console.ReadLine();
-
-                Console.WriteLine("Enter Zip: ");
-                contact.zip = Convert.ToInt32(Console.ReadLine());
-
-                Console.WriteLine("Enter State: ");
-                contact.state = Console.ReadLine();
-
-                Console.WriteLine("Enter Email: ");
-                contact.email = Console.ReadLine();
-
-                person.Add(contact);
             }
-            else
-                Console.WriteLine("Contact already exist in address book.\n");
+
+            Console.WriteLine("Enter Last Name: ");
+            contact.lastname = Console.ReadLine();
+
+            Console.WriteLine("Enter Phone Number: ");
+            contact.phoneNo = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Enter Address: ");
+            contact.address = Console.ReadLine();
+
+            Console.WriteLine("Enter City: ");
+            contact.city = Console.ReadLine();
+
+            Console.WriteLine("Enter Zip: ");
+            contact.zip = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter State: ");
+            contact.state = Console.ReadLine();
+
+            Console.WriteLine("Enter Email: ");
+            contact.email = Console.ReadLine();
+
+            person.Add(contact);
 
         }
 
         public void displaycontacts()
         {
-            if (program.Person.Count == 0)
+            if (group.Count == 0)
             {
-                Console.WriteLine("address book is empty.");
+                Console.WriteLine("Address book is empty.");
                 return;
             }
-            Console.WriteLine("list of contacts:\n");
-            foreach (var contact in program.Person)
-            {
-                Console.WriteLine("first name: " + contact.firstname);
-                Console.WriteLine("last name: " + contact.lastname);
-                Console.WriteLine("address: " + contact.address);
-                Console.WriteLine("city: " + contact.city);
-                Console.WriteLine("state: " + contact.state);
-                Console.WriteLine("zip Code: " + contact.zip);
-                Console.WriteLine("contact No: " + contact.phoneNo);
-                Console.WriteLine("email address: " + contact.email);
-            }
 
+            Console.WriteLine("1.Total Contacts\n2.Group");
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    Console.WriteLine("List of contacts:\n");
+                    foreach (string key in group.Keys)
+                    {
+                        List<contacts> contacts = group[key];
+                        foreach (var contact in contacts)
+                        {
+                            Console.WriteLine("\nFirst Name: " + contact.firstname + "\nLast Name: " + contact.lastname + "\nAddress: " + contact.address + "\nCity: " + contact.city + "\nState: " + contact.state + "\nZip Code: " + contact.zip + "\nContact No.: " + contact.phoneNo + "\nEmail address: " + contact.email + "----------------------------------------------\n");
+                        }
+                    }
+                    break;
+                case 2:
+                    foreach (string key in group.Keys)
+                    {
+                        Console.WriteLine(key);
+
+                    }
+                    break;
+            }
         }
-        public static void editcontacts()
+
+        public void editcontacts()
         {
             Console.WriteLine("Enter Name of person to edit details: ");
             string name = Console.ReadLine();
 
-            foreach (var contact in program.Person)
+            foreach (var contact in program.person)
             {
                 if (contact.firstname.Equals(name))
                 {
@@ -120,12 +150,12 @@ namespace addressbook
                 }
             }
         }
-        public static void deletecontacts()
+        public void deletecontacts()
         {
             Console.WriteLine("Enter the Name of person to delete details: ");
             string inp_name = Console.ReadLine();
 
-            foreach (var contact in program.Person)
+            foreach (var contact in program.person)
             {
                 if (contact.firstname.Equals(inp_name))
                 {
@@ -192,11 +222,71 @@ namespace addressbook
                 string gname = Console.ReadLine();
                 Person person = new Person();
                 person.addmulticontacts();
-                group.Add(gname, program.Person);
+                group.Add(gname, program.person);
                 numberofbooks--;
             }
         }
+        public void SearchByCityorState()
+        {
+            multiaddressbook();
+            Console.WriteLine("1. search contacts by city\n2.search contacts by state");
+            Console.WriteLine("Enter your choice:");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    {
+                        Console.WriteLine("Enter a city Name to be search: ");
+                        string searchByCity = Console.ReadLine();
+                        foreach (var contact in group.Keys)
+                        {
+                            Console.WriteLine("Group Name is :" + contact + " ");
+                            foreach (var list in group[contact].FindAll(p => p.city.Equals(searchByCity)))
+                            {
+                                Console.WriteLine("first name: " + list.firstname);
+                                Console.WriteLine("last name: " + list.lastname);
+                                Console.WriteLine("address: " + list.address);
+                                Console.WriteLine("city: " + list.city);
+                                Console.WriteLine("state: " + list.state);
+                                Console.WriteLine("zip Code: " + list.zip);
+                                Console.WriteLine("contact No: " + list.phoneNo);
+                                Console.WriteLine("email address: " + list.email);
+                            }
+
+                        }
+                        break;
+
+                    }
+                case 2:
+                    {
+                        Console.WriteLine("Enter a state Name to be search: ");
+                        string searchByState = Console.ReadLine();
+                        foreach (var contact in group.Keys)
+                        {
+                            Console.WriteLine("Group Name is :" + contact + " ");
+                            foreach (var list in group[contact].FindAll(p => p.state.Equals(searchByState)))
+                            {
+                                Console.WriteLine("first name: " + list.firstname);
+                                Console.WriteLine("last name: " + list.lastname);
+                                Console.WriteLine("address: " + list.address);
+                                Console.WriteLine("city: " + list.city);
+                                Console.WriteLine("state: " + list.state);
+                                Console.WriteLine("zip Code: " + list.zip);
+                                Console.WriteLine("contact No: " + list.phoneNo);
+                                Console.WriteLine("email address: " + list.email);
+                            }
+
+                        }
+                        break;
+
+                    }
+
+
+            }
+
+        }
     }
 }
+
 
       

@@ -1,26 +1,30 @@
 ﻿using System;
 namespace addressbook
 {
-    internal class program
+    public class program
     {
-        public static List<contacts> Person = new List<contacts>();
-        
+
+       public static List<contacts> person = new List<contacts>();
 
 
         public static void Main(string[] args)
         {
-            addressbook.Person p = new addressbook.Person();
+            Person p = new Person();
 
 
-            addressbook.Person.createcontacts();
-            addressbook.Person.editcontacts();
-            addressbook.Person.deletecontacts();
-            p.displaycontacts();
-            p.addmulticontacts();
+           // p.createcontacts();
+           // p.editcontacts();
+           // p.deletecontacts();
+           // p.displaycontacts();
+           // p.addmulticontacts();
             p.multiaddressbook();
-            addressbook.Person.createcontacts();
+            p.createcontacts();
+            p.SearchByCityorState();
             p.displaycontacts();
-           
+
+
+
+
 
         }
     }
