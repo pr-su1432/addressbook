@@ -22,6 +22,7 @@ namespace addressbook
             p.SearchByCityorState();
             p.displaycontacts();
             p.displayByCityOrState();
+            p.getCount();
 
 
 

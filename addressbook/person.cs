@@ -317,7 +317,49 @@ namespace addressbook
             }
 
         }
+        public void getCount()
+        {
+            foreach (var key in group.Keys)
+            {
+                foreach (var item in group[key])
+                {
 
+                    if (byCity.ContainsKey(item.city))
+                        byCity[item.city].Add(item.firstname + " " + item.lastname);
+                    else
+                        byCity.Add(item.city, new List<string>() { item.firstname + " " + item.lastname });
+                    if (ByState.ContainsKey(item.state))
+                        ByState[item.state].Add(item.firstname + " " + item.lastname);
+                    else
+                        ByState.Add(item.state, new List<string>() { item.firstname + " " + item.lastname });
+                }
+            }
+            Console.WriteLine("No. of contacts by city.");
+            foreach (var key in byCity.Keys)
+            {
+                Func<int, int> count = x =>
+                {
+                    foreach (var value in byCity[key])
+                        x += 1;
+                    return x;
+                };
+                Console.WriteLine("No. of contacts in city " + key + " are " + count(0));
+            }
+            Console.WriteLine("No. of contacts by state.");
+            foreach (var key in ByState.Keys)
+            {
+                Func<int, int> count = x =>
+                {
+                    foreach (var value in ByState[key])
+                        x += 1;
+                    return x;
+                };
+                Console.WriteLine("No. of contacts in state " + key + " are " + count(0));
+            }
+
+
+
+        }
     }
 }
 
