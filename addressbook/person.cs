@@ -6,47 +6,58 @@ using System.Threading.Tasks;
 
 namespace addressbook
 {
-    internal class person
+    internal class Person
     {
+        public static List<contacts> person = new List<contacts>();
+        public Dictionary<string, List<contacts>> group = new Dictionary<string, List<contacts>>();
+        
+
         public static void createcontacts()
         {
+
             contacts contact = new contacts();
-            Console.WriteLine("Enter first name: ");
+            Console.WriteLine("Enter First Name: ");
             contact.firstname = Console.ReadLine();
+            contacts contacts = person.FirstOrDefault(p => p.Equals(contact));
+            if (contacts == null)
+            {
+                Console.WriteLine("Enter Last Name: ");
+                contact.lastname = Console.ReadLine();
 
-            Console.WriteLine("Enter lastname name: ");
-            contact.lastname = Console.ReadLine();
+                Console.WriteLine("Enter Phone Number: ");
+                contact.phoneNo = Convert.ToDouble(Console.ReadLine());
 
-            Console.WriteLine("Enter address: ");
-            contact.address = Console.ReadLine();
+                Console.WriteLine("Enter Address: ");
+                contact.address = Console.ReadLine();
 
-            Console.WriteLine("Enter phone Number: ");
-            contact.phoneNo = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Enter City: ");
+                contact.city = Console.ReadLine();
 
-            Console.WriteLine("Enter city: ");
-            contact.city = Console.ReadLine();
+                Console.WriteLine("Enter Zip: ");
+                contact.zip = Convert.ToInt32(Console.ReadLine());
 
+                Console.WriteLine("Enter State: ");
+                contact.state = Console.ReadLine();
 
-            Console.WriteLine("Enter zip: ");
-            contact.zip = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter Email: ");
+                contact.email = Console.ReadLine();
 
-            Console.WriteLine("Enter state: ");
-            contact.state = Console.ReadLine();
+                person.Add(contact);
+            }
+            else
+                Console.WriteLine("Contact already exist in address book.\n");
 
-            Console.WriteLine("Enter email: ");
-            contact.email = Console.ReadLine();
-
-            program.person.Add(contact);
         }
-        public static void displaycontacts()
+
+        public void displaycontacts()
         {
-            if (program.person.Count == 0)
+            if (program.Person.Count == 0)
             {
                 Console.WriteLine("address book is empty.");
                 return;
             }
             Console.WriteLine("list of contacts:\n");
-            foreach (var contact in program.person)
+            foreach (var contact in program.Person)
             {
                 Console.WriteLine("first name: " + contact.firstname);
                 Console.WriteLine("last name: " + contact.lastname);
@@ -57,14 +68,14 @@ namespace addressbook
                 Console.WriteLine("contact No: " + contact.phoneNo);
                 Console.WriteLine("email address: " + contact.email);
             }
-     
+
         }
         public static void editcontacts()
         {
             Console.WriteLine("Enter Name of person to edit details: ");
             string name = Console.ReadLine();
 
-            foreach (var contact in program.person)
+            foreach (var contact in program.Person)
             {
                 if (contact.firstname.Equals(name))
                 {
@@ -111,16 +122,16 @@ namespace addressbook
         }
         public static void deletecontacts()
         {
-             Console.WriteLine("Enter the Name of person to delete details: ");
-             string inp_name = Console.ReadLine();
+            Console.WriteLine("Enter the Name of person to delete details: ");
+            string inp_name = Console.ReadLine();
 
-             foreach (var contact in program.person)
-             {
-                 if (contact.firstname.Equals(inp_name))
-                 {
-                     Console.WriteLine("which field you want to edit:\n1.full name\n2.last name\n3.address\n4.city\n5.state\n6.zip\n7.phoneNo\n8.email\n");
-                     Console.WriteLine("Enter your choice:");
-                     int choice = Convert.ToInt32(Console.ReadLine());
+            foreach (var contact in program.Person)
+            {
+                if (contact.firstname.Equals(inp_name))
+                {
+                    Console.WriteLine("which field you want to edit:\n1.full name\n2.last name\n3.address\n4.city\n5.state\n6.zip\n7.phoneNo\n8.email\n");
+                    Console.WriteLine("Enter your choice:");
+                    int choice = Convert.ToInt32(Console.ReadLine());
                     switch (choice)
                     {
                         case 1:
@@ -156,11 +167,11 @@ namespace addressbook
                             contact.firstname = Convert.ToString(Console.ReadLine());
                             break;
                     }
-                 }
+                }
 
-             }
+            }
         }
-        public static void addmulticontacts()
+        public void addmulticontacts()
         {
             Console.WriteLine("How many contacts you want to add: ");
             int n = Convert.ToInt32(Console.ReadLine());
@@ -170,7 +181,7 @@ namespace addressbook
                 n--;
             }
         }
-        public static void multiaddressbook()
+        public void multiaddressbook()
         {
             Dictionary<string, List<contacts>> group = new Dictionary<string, List<contacts>>();
             Console.WriteLine("Howmany number of address books you want to add? ");
@@ -179,15 +190,13 @@ namespace addressbook
             {
                 Console.WriteLine("Enter name of the owner of this address book: ");
                 string gname = Console.ReadLine();
-                person person = new person();
+                Person person = new Person();
                 person.addmulticontacts();
-                group.Add(gname, program.person);
+                group.Add(gname, program.Person);
                 numberofbooks--;
             }
         }
     }
 }
 
-
-
-
+      

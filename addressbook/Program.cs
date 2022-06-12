@@ -1,18 +1,28 @@
-﻿// See https://aka.ms/new-console-template for more information
-using addressbook;
-internal class program
+﻿using System;
+namespace addressbook
 {
-    public static List<contacts> person = new List<contacts>();
-   
-
-    public static void Main(string[] args)
+    internal class program
     {
-        addressbook.person.createcontacts();
-        addressbook.person.displaycontacts();
-        addressbook.person.editcontacts();
-        addressbook.person.deletecontacts();
-        addressbook.person.addmulticontacts();
-        addressbook.person.multiaddressbook();
+        public static List<contacts> Person = new List<contacts>();
+        
 
+
+        public static void Main(string[] args)
+        {
+            addressbook.Person p = new addressbook.Person();
+
+
+            addressbook.Person.createcontacts();
+            addressbook.Person.editcontacts();
+            addressbook.Person.deletecontacts();
+            p.displaycontacts();
+            p.addmulticontacts();
+            p.multiaddressbook();
+            addressbook.Person.createcontacts();
+            p.displaycontacts();
+           
+
+        }
     }
+
 }
