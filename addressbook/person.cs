@@ -285,6 +285,39 @@ namespace addressbook
             }
 
         }
+        public void displayByCityOrState()
+        {
+            foreach (var key in group.Keys)
+            {
+                foreach (var item in group[key])
+                {
+
+                    if (byCity.ContainsKey(item.city))
+                        byCity[item.city].Add(item.firstname + " " + item.lastname);
+                    else
+                        byCity.Add(item.city, new List<string>() { item.firstname + " " + item.lastname });
+                    if (ByState.ContainsKey(item.state))
+                        ByState[item.state].Add(item.firstname + " " + item.lastname);
+                    else
+                        ByState.Add(item.state, new List<string>() { item.firstname + " " + item.lastname });
+                }
+            }
+            Console.WriteLine("Contacts by city:");
+            foreach (var key in byCity.Keys)
+            {
+                Console.WriteLine("Contacts from city:" + key);
+                byCity[key].ForEach(x => Console.WriteLine(x));
+
+            }
+            Console.WriteLine("Contacts by state:");
+            foreach (var key in ByState.Keys)
+            {
+                Console.WriteLine("Contacts from state: " + key);
+                ByState[key].ForEach(x => Console.WriteLine(x));
+            }
+
+        }
+
     }
 }
 

@@ -21,6 +21,7 @@ namespace addressbook
             p.createcontacts();
             p.SearchByCityorState();
             p.displaycontacts();
+            p.displayByCityOrState();
 
 
 
