@@ -357,8 +357,32 @@ namespace addressbook
                 Console.WriteLine("No. of contacts in state " + key + " are " + count(0));
             }
 
+        }
+        public void WriteTextFile()
+        {
+            string file = @"C:\prasanna\prasanna bridgelabzs\addressbook\addressbook\ContactsFile.txt";
+            using StreamWriter writer = File.AppendText(file);
+            {
+                Console.WriteLine("First Name, LastName, Address, City, State, Zip Code, Phone Number, Email-(Use Comma Separator)");
+                writer.WriteLine(Console.ReadLine());
+                writer.Close();
+            }
+        }
+        public void ReadTextFile()
+        {
+            string file = @"C:\prasanna\prasanna bridgelabzs\addressbook\addressbook\ContactsFile.txt";
+            string[] reader = File.ReadAllLines(file);
+            string[] array = { "First Name", "LastName", "Address", "City", "State", "Zip Code", "Phone Number", "Email" };
 
-
+            for (int i = 0; i < reader.Length; i++)
+            {
+                string[] details = reader[i].Split(",");
+                for (int j = 0; j < details.Length; j++)
+                {
+                    Console.WriteLine(array[j] + ": " + details[j]);
+                }
+                Console.WriteLine();
+            }
         }
     }
 }

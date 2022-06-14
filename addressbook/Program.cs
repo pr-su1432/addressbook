@@ -12,17 +12,20 @@ namespace addressbook
             Person p = new Person();
 
 
-           // p.createcontacts();
+            p.createcontacts();
            // p.editcontacts();
            // p.deletecontacts();
            // p.displaycontacts();
            // p.addmulticontacts();
-            p.multiaddressbook();
-            p.createcontacts();
-            p.SearchByCityorState();
+           // p.multiaddressbook();
+           // p.createcontacts();
+           // p.SearchByCityorState();
+           // p.displaycontacts();
+           // p.displayByCityOrState();
+           // p.getCount();
+            p.WriteTextFile();
+            p.ReadTextFile();
             p.displaycontacts();
-            p.displayByCityOrState();
-            p.getCount();
 
 
 
