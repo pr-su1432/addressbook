@@ -12,7 +12,7 @@ namespace addressbook
             Person p = new Person();
 
 
-            p.createcontacts();
+           // p.createcontacts();
            // p.editcontacts();
            // p.deletecontacts();
            // p.displaycontacts();
@@ -23,8 +23,10 @@ namespace addressbook
            // p.displaycontacts();
            // p.displayByCityOrState();
            // p.getCount();
-            p.WriteTextFile();
-            p.ReadTextFile();
+           // p.WriteTextFile();
+           // p.ReadTextFile();
+            p.WriteCSVFile();
+            p.ReadCSVFile();
             p.displaycontacts();
 
 
