@@ -27,6 +27,8 @@ namespace addressbook
            // p.ReadTextFile();
             p.WriteCSVFile();
             p.ReadCSVFile();
+           // p.Serialization();
+           // p.Deserialization();
             p.displaycontacts();
 
 

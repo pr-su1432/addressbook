@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace addressbook
 {
@@ -18,18 +20,18 @@ namespace addressbook
 
 
 
-        contacts contact;
+        contacts contacts;
 
         public void createcontacts()
         {
-            contact = new contacts();
+            contacts = new contacts();
             bool ststus = true;
             while (ststus)
             {
 
                 Console.WriteLine("Enter First Name: ");
-                contact.firstname = Console.ReadLine();
-                if (person.Any(p => p.firstname.Equals(contact.firstname)))
+                contacts.firstname = Console.ReadLine();
+                if (person.Any(p => p.firstname.Equals(contacts.firstname)))
                 {
 
                     Console.WriteLine("Name already exit in adress book:");
@@ -42,27 +44,27 @@ namespace addressbook
             }
 
             Console.WriteLine("Enter Last Name: ");
-            contact.lastname = Console.ReadLine();
+            contacts.lastname = Console.ReadLine();
 
             Console.WriteLine("Enter Phone Number: ");
-            contact.phoneNo = Convert.ToDouble(Console.ReadLine());
+            contacts.phoneNo = Convert.ToDouble(Console.ReadLine());
 
             Console.WriteLine("Enter Address: ");
-            contact.address = Console.ReadLine();
+            contacts.address = Console.ReadLine();
 
             Console.WriteLine("Enter City: ");
-            contact.city = Console.ReadLine();
+            contacts.city = Console.ReadLine();
 
             Console.WriteLine("Enter Zip: ");
-            contact.zip = Convert.ToInt32(Console.ReadLine());
+            contacts.zip = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Enter State: ");
-            contact.state = Console.ReadLine();
+            contacts.state = Console.ReadLine();
 
             Console.WriteLine("Enter Email: ");
-            contact.email = Console.ReadLine();
+            contacts.email = Console.ReadLine();
 
-            person.Add(contact);
+            person.Add(contacts);
 
         }
 
@@ -386,7 +388,7 @@ namespace addressbook
         }
         public void WriteCSVFile()
         {
-            string path = @"C:\prasanna\prasanna bridgelabzs\addressbook\addressbook\ContactsFile.csv";
+            string path = @"C:\prasanna\prasanna bridgelabzs\addressbook\addressbook\ContactsFile.json";
             StringBuilder creater = new StringBuilder();
             Console.WriteLine("First Name, LastName, Address, City, State, Zip Code, Phone Number, Email--Use Comma Separator");
             creater.AppendLine(Console.ReadLine());
@@ -394,7 +396,7 @@ namespace addressbook
         }
         public void ReadCSVFile()
         {
-            string path = @"C:\prasanna\prasanna bridgelabzs\addressbook\addressbook\ContactsFile.csv";
+            string path = @"C:\prasanna\prasanna bridgelabzs\addressbook\addressbook\ContactsFile.json";
             string[] file = File.ReadAllLines(path);
 
             string[] array = { "First Name", "LastName", "Address", "City", "State", "Zip Code", "Phone Number", "Email" };
@@ -408,6 +410,7 @@ namespace addressbook
                 Console.WriteLine();
             }
         }
+       
     }
 }
 
