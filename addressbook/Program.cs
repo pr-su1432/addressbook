@@ -25,10 +25,13 @@ namespace addressbook
            // p.getCount();
            // p.WriteTextFile();
            // p.ReadTextFile();
-            p.WriteCSVFile();
-            p.ReadCSVFile();
-           // p.Serialization();
-           // p.Deserialization();
+           // p.WriteCSVFile();
+           // p.ReadCSVFile();
+            p.JSONSerialization();
+            p.JSONDeserialization();
+
+
+
             p.displaycontacts();
 
 

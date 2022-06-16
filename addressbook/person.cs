@@ -15,12 +15,13 @@ namespace addressbook
         Dictionary<string, List<contacts>> group = new Dictionary<string, List<contacts>>();
         Dictionary<string, List<string>> byCity = new Dictionary<string, List<string>>();
         Dictionary<string, List<string>> ByState = new Dictionary<string, List<string>>();
+       
 
 
 
 
 
-        contacts contacts;
+       contacts contacts;
 
         public void createcontacts()
         {
@@ -388,7 +389,7 @@ namespace addressbook
         }
         public void WriteCSVFile()
         {
-            string path = @"C:\prasanna\prasanna bridgelabzs\addressbook\addressbook\ContactsFile.json";
+            string path = @"C:\prasanna\prasanna bridgelabzs\addressbook\addressbook\ContactsFile.csv";
             StringBuilder creater = new StringBuilder();
             Console.WriteLine("First Name, LastName, Address, City, State, Zip Code, Phone Number, Email--Use Comma Separator");
             creater.AppendLine(Console.ReadLine());
@@ -396,7 +397,7 @@ namespace addressbook
         }
         public void ReadCSVFile()
         {
-            string path = @"C:\prasanna\prasanna bridgelabzs\addressbook\addressbook\ContactsFile.json";
+            string path = @"C:\prasanna\prasanna bridgelabzs\addressbook\addressbook\ContactsFile.csv";
             string[] file = File.ReadAllLines(path);
 
             string[] array = { "First Name", "LastName", "Address", "City", "State", "Zip Code", "Phone Number", "Email" };
@@ -405,12 +406,39 @@ namespace addressbook
                 string[] data = line.Split(",");
                 for (int i = 0; i < data.Length; i++)
                 {
-                    Console.WriteLine(array[i] + ": " + data[i]);
+                    Console.WriteLine(array[i] + " : " + data[i]);
                 }
                 Console.WriteLine();
             }
         }
-       
+        public void JSONSerialization()
+        {
+            addmulticontacts();
+            string path = @"C:\prasanna\prasanna bridgelabzs\addressbook\addressbook\ContactsFile.json";
+            var json = JsonConvert.SerializeObject(person);
+            File.WriteAllText(path, json);
+        }
+        public void JSONDeserialization()
+        {
+            string path = @"C:\prasanna\prasanna bridgelabzs\addressbook\addressbook\ContactsFile.json";
+            using StreamReader reader = new StreamReader(path);
+            {
+                string json = reader.ReadToEnd();
+                var jsonfile = JsonConvert.DeserializeObject< List<contacts>>(json);
+                foreach (var data in jsonfile)
+                {
+                    Console.WriteLine("First Name: " + data.firstname);
+                    Console.WriteLine("last Name: " + data.lastname);
+                    Console.WriteLine("address: " + data.address);
+                    Console.WriteLine("city: " + data.city);
+                    Console.WriteLine("state: " + data.state);
+                    Console.WriteLine("zip Code: " + data.zip);
+                    Console.WriteLine("contact No: " + data.phoneNo);
+                    Console.WriteLine("email address: " + data.email);
+                }
+            }
+
+        }
     }
 }
 
